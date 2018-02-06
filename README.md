@@ -23,4 +23,4 @@ Use `TruffleContract(...)` to access the contract details.
 
 ### Sources
 
-[Github Documentation](https://github.com/trufflesuite/truffle-contract)
+[Github truffle-contract documentation](https://github.com/trufflesuite/truffle-contract)
