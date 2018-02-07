@@ -25,12 +25,14 @@
 <script type="text/javascript" src="./js/web3.min.js"></script>
 <script type="text/javascript" src="./js/truffle-contract.js"></script>
 <script type="text/javascript">
+    // Is there an injected web3 instance?
     if (typeof web3 !== 'undefined') {
-        web3 = new Web3(web3.currentProvider);
+        var web3Provider = web3.currentProvider;
     } else {
-        // set the provider you want from Web3.providers
-        web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+        // If no injected web3 instance is detected, fall back to Ganache
+        var web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
     }
+    web3 = new Web3(web3Provider);
 
     // Get Contract
     $.getJSON('./Friend.json', function (data) {
@@ -39,7 +41,7 @@
         var FriendContract = TruffleContract(FriendArtifact);
 
         // Set the provider for our contract
-        FriendContract.setProvider(web3.currentProvider);
+        FriendContract.setProvider(web3Provider);
 
         console.log("FriendContract:")
         console.log(FriendContract)
